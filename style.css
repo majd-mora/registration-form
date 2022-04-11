@@ -1,0 +1,25 @@
+/* style sheet */
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td, th {
+	border: 1px solid #ccc;
+	padding: 8px;
+}
+
+th {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+	background-color: #ddd;
+}
+
+thead {
+	background-color: black;
+	color: white;
+}
