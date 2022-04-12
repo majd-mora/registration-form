@@ -1,5 +1,7 @@
 /* style sheet */
-
+form {
+	text-align: center;
+}
 table {
 	border-collapse: collapse;
 	width: 100%;

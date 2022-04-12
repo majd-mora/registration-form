@@ -1,6 +1,7 @@
 /* functionalities */
 
 let sortDirection = false;
+//what does let do
 let personData = [
     {
         firstName: 'Majd',
@@ -28,13 +29,15 @@ let personData = [
     }
 ];
 
+//what do you call this function inside the sort?
+//explain callback functions
 personData.sort(function (a, b) {
     const dateA = new Date(a.date), dateB = new Date(b.date)
     return dateA - dateB
 });
 
 
-
+// W3Schools Read again to understand
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("myTable2");
@@ -91,17 +94,22 @@ function sortTable(n) {
 }
 
 
+document.getElementById('submit').onclick = function () {
+    document.getElementById('myTable2').style.display = "block";
 
+    var myTable = document.getElementById("myTable2");
+    var newRow = myTable.insertRow(-1);
+    var fName = newRow.insertCell(0);
+    var lName = newRow.insertCell(1);
+    var gender = newRow.insertCell(2);
+    var dob = newRow.insertCell(3);
 
-
-
-
-
-console.log(personData)
-
-window.onload = () => {
-    loadTableData(personData);
+    fName.innerHTML = document.getElementById('fname').value;
+    lName.innerHTML = document.getElementById('lname').value;
+    gender.innerHTML = document.querySelector('input[name = "gender"]:checked').value;
+    dob.innerHTML = document.getElementById('birthday').value;
 }
+
 
 function loadTableData(personData) {
     const tableBody = document.getElementById('tableData');
@@ -116,12 +124,10 @@ function loadTableData(personData) {
         </tr>`;
     }
 
-    console.log(dataHtml)
-
     tableBody.innerHTML = dataHtml;
 }
 
-
+// 
 function sortColumn(columnName) {
     const dataType = typeof personData[0][columnName];
     sortDirection = !sortDirection;
@@ -134,8 +140,4 @@ function sortColumn(columnName) {
     loadTableData(personData)
 }
 
-// function sortNumberColumn(sort, columnName) {
-//     personData = personData.sort((p1, p2) => {
-//         return sort ? p1[columnName] - p2[columnName] : p2[columnName] - p1[columnName]
-//     });
-// }
+loadTableData(personData);
