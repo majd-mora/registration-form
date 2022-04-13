@@ -29,6 +29,12 @@ let personData = [
     }
 ];
 
+personData.forEach((item, i) => {
+  item.id = i + 1;
+});
+
+console.log(personData);
+
 //what do you call this function inside the sort?
 //explain callback functions
 personData.sort(function (a, b) {
@@ -37,7 +43,7 @@ personData.sort(function (a, b) {
 });
 
 
-// W3Schools Read again to understand
+// W3Schools Read again to understand sorting fname and lname
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("myTable2");
@@ -93,23 +99,20 @@ function sortTable(n) {
   }
 }
 
-
-document.getElementById('submit').onclick = function () {
-    document.getElementById('myTable2').style.display = "block";
-
-    var myTable = document.getElementById("myTable2");
-    var newRow = myTable.insertRow(-1);
-    var fName = newRow.insertCell(0);
-    var lName = newRow.insertCell(1);
-    var gender = newRow.insertCell(2);
-    var dob = newRow.insertCell(3);
-
-    fName.innerHTML = document.getElementById('fname').value;
-    lName.innerHTML = document.getElementById('lname').value;
-    gender.innerHTML = document.querySelector('input[name = "gender"]:checked').value;
-    dob.innerHTML = document.getElementById('birthday').value;
-}
-
+var data = [];
+document.querySelector('form button').addEventListener('click', function(event) {
+    
+    var inputs = document.querySelectorAll('form input');
+    var newPerson = {};
+    for (var i = 0; i < inputs.length; i++) {
+        newPerson[inputs[i].name] = inputs[i].value;
+        inputs[i].value = '';
+    }
+    console.log(personData)
+    personData.push(newPerson);
+    loadTableData(personData);
+    event.preventDefault();
+}, false);
 
 function loadTableData(personData) {
     const tableBody = document.getElementById('tableData');
@@ -123,11 +126,10 @@ function loadTableData(personData) {
         <td>${person.date}</td>
         </tr>`;
     }
-
     tableBody.innerHTML = dataHtml;
 }
 
-// 
+// sorting dates
 function sortColumn(columnName) {
     const dataType = typeof personData[0][columnName];
     sortDirection = !sortDirection;
